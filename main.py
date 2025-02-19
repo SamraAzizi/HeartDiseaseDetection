@@ -2,7 +2,7 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.naive_bayes import GaussianNB
-
+from sklearn.ensemble import GradientBoostingClassifier
 
 
 df = pd.read_csv('heart.csv')
@@ -18,3 +18,6 @@ forest.fit(x_train, y_train)
 
 nb_clf = GaussianNB()
 nb_clf.fit(x_train, y_train)
+
+gb_clf = GradientBoostingClassifier()
+gb_clf.fit(x_train, y_train)
