@@ -43,3 +43,17 @@ log.fit(x_train_scaled, y_train)
 
 svc = SVC()
 svc.fit(x_train_scaled, y_train)
+
+
+
+forest.score(x_test, y_test)
+
+nb_clf.score(x_test, y_test)
+
+gb_clf.score(x_test, y_test)
+
+knn.score(x_test_scaled, y_test)
+
+log.score(x_test_scaled, y_test)
+
+svc.score(x_test_scaled, y_test)
