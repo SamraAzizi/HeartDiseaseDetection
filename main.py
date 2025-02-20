@@ -5,7 +5,8 @@ from sklearn.naive_bayes import GaussianNB
 from sklearn.ensemble import GradientBoostingClassifier
 from sklearn.preprocessing import StandardScaler
 from sklearn.neighbors import KNeighborsClassifier
-
+from sklearn.linear_model import LogisticRegression
+from sklearn.svm import SVC
 
 
 df = pd.read_csv('heart.csv')
@@ -34,3 +35,11 @@ x_test_scaled = scaler.transform(x_test)
 
 knn = KNeighborsClassifier()
 knn.fit(x_train_scaled, y_train)
+
+
+log = LogisticRegression()
+log.fit(x_train_scaled, y_train)
+
+
+svc = SVC()
+svc.fit(x_train_scaled, y_train)
