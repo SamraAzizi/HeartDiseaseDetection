@@ -3,6 +3,9 @@ from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.naive_bayes import GaussianNB
 from sklearn.ensemble import GradientBoostingClassifier
+from sklearn.preprocessing import StandardScaler
+from sklearn.neighbors import KNeighborsClassifier
+
 
 
 df = pd.read_csv('heart.csv')
@@ -21,3 +24,13 @@ nb_clf.fit(x_train, y_train)
 
 gb_clf = GradientBoostingClassifier()
 gb_clf.fit(x_train, y_train)
+
+#scale sensitive model 
+
+scaler = StandardScaler()
+
+x_train_scaled = scaler.fit_transform(x_train)
+x_test_scaled = scaler.transform(x_test)
+
+knn = KNeighborsClassifier()
+knn.fit(x_train_scaled, y_train)
