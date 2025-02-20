@@ -7,7 +7,7 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.linear_model import LogisticRegression
 from sklearn.svm import SVC
-
+from sklearn.metrics import recall_score
 
 df = pd.read_csv('heart.csv')
 
@@ -57,3 +57,19 @@ knn.score(x_test_scaled, y_test)
 log.score(x_test_scaled, y_test)
 
 svc.score(x_test_scaled, y_test)
+
+
+y_preds = forest.predict(x_test)
+print('forest: ', recall_score(y_test, y_preds))
+
+
+y_preds = nb_clf.predict(x_test)
+print('nb_clf: ', recall_score(y_test, y_preds))
+
+
+y_preds = gb_clf.predict(x_test)
+print('gb_clf ', recall_score(y_test, y_preds))
+
+
+
+
