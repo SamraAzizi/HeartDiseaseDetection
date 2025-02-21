@@ -10,7 +10,7 @@ from sklearn.svm import SVC
 from sklearn.metrics import recall_score
 import matplotlib.pyplot as plt
 from sklearn.metrics import roc_curve, roc_auc_score
-
+from sklearn.model_selection import GridSearchCV
 df = pd.read_csv('heart.csv')
 
 x, y = df.drop('target', axis=1), df['target']
@@ -85,12 +85,23 @@ print('SVC', recall_score(y_test, y_preds))
 
 
 
-y_probs = forest.predict_proba(x_test)
+y_probs = forest.predict_proba(x_test)[:, 1]
 
 fpr, tpr, thresholds = roc_curve(y_test, y_probs)
 
 plt.plot(fpr, tpr)
 plt.xlabel('False Positive Rate')
 plt.ylabel('True Positive Rate (Recall)')
+plt.title('ROC Curve')
+plt.show()
+
+roc_auc_score(y_test, y_probs)
 
 
+param_grid = {
+    'n_estimators ': [100, 200, 500],
+    'max_depth': [None, 10, 20, 30],
+    'min_samples_split': [2,5,10],
+    'min_sample_leaf': [1,2,4],
+    
+}
