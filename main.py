@@ -103,5 +103,9 @@ param_grid = {
     'max_depth': [None, 10, 20, 30],
     'min_samples_split': [2,5,10],
     'min_sample_leaf': [1,2,4],
-    
+    'max_features': ['sqrt','log2', None]
+
 }
+
+forest = RandomForestClassifier(in_jobs =-1, random_state=9)
+grid_search = GridSearchCV(forest, param_grid, cv=3)
