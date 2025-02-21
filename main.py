@@ -8,6 +8,8 @@ from sklearn.neighbors import KNeighborsClassifier
 from sklearn.linear_model import LogisticRegression
 from sklearn.svm import SVC
 from sklearn.metrics import recall_score
+import matplotlib.pyplot as plt
+from sklearn.metrics import roc_curve, roc_auc_score
 
 df = pd.read_csv('heart.csv')
 
@@ -64,12 +66,31 @@ print('forest: ', recall_score(y_test, y_preds))
 
 
 y_preds = nb_clf.predict(x_test)
-print('nb_clf: ', recall_score(y_test, y_preds))
+print('NB ', recall_score(y_test, y_preds))
 
 
 y_preds = gb_clf.predict(x_test)
-print('gb_clf ', recall_score(y_test, y_preds))
+print('GB', recall_score(y_test, y_preds))
+
+y_preds = knn.predict(x_test_scaled)
+print('KNN ', recall_score(y_test, y_preds))
 
 
+y_preds = log.predict(x_test_scaled) 
+print('log ', recall_score(y_test, y_preds))
+
+
+y_preds = svc.predict(x_test_scaled)
+print('SVC', recall_score(y_test, y_preds))
+
+
+
+y_probs = forest.predict_proba(x_test)
+
+fpr, tpr, thresholds = roc_curve(y_test, y_probs)
+
+plt.plot(fpr, tpr)
+plt.xlabel('False Positive Rate')
+plt.ylabel('True Positive Rate (Recall)')
 
 
