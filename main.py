@@ -12,6 +12,7 @@ import matplotlib.pyplot as plt
 from sklearn.metrics import roc_curve, roc_auc_score
 from sklearn.model_selection import GridSearchCV
 df = pd.read_csv('heart.csv')
+import numpy as np
 
 x, y = df.drop('target', axis=1), df['target']
 x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.4, random_state=9)
@@ -108,4 +109,16 @@ param_grid = {
 }
 
 forest = RandomForestClassifier(in_jobs =-1, random_state=9)
-grid_search = GridSearchCV(forest, param_grid, cv=3)
+grid_search = GridSearchCV(forest, param_grid, cv=3, n_jobs=-1)
+grid_search.fit(x_train, y_train)
+
+best_forest = grid_search.best_estimator_
+
+#fearture importances
+
+feature_importances = best_forest.feature_importances_
+features = best_forest.feature_names_in_
+
+
+sorted_idx = np.argsort(feature_importances)
+sorted_features = features(sorted_idx)
