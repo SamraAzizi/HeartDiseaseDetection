@@ -121,4 +121,12 @@ features = best_forest.feature_names_in_
 
 
 sorted_idx = np.argsort(feature_importances)
-sorted_features = features(sorted_idx)
+sorted_features = features[sorted_idx]
+sorted_importances = feature_importances[sorted_idx]
+
+
+colors = plt.cm.YlGn(sorted_importances / max(sorted_importances))
+plt.barh(sorted_features, sorted_importances, color=colors)
+plt.xlabel('Feature Importances')
+plt.ylabel("Features")
+plt.show()
