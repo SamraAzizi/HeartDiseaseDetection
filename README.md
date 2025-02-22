@@ -50,3 +50,32 @@ plt.plot(fpr, tpr)
 ```
 
 6. Hyperparameter Tuning: A grid search is performed to find the best hyperparameters for the Random Forest model.
+
+```bash
+grid_search = GridSearchCV(forest, param_grid, cv=3, n_jobs=-1)
+```
+
+7. Feature Importance: The feature importances of the best Random Forest model are visualized.
+
+```bash 
+plt.barh(sorted_features, sorted_importances)
+```
+
+8. Correlation Heatmap: A heatmap of feature correlations is generated.
+```bash
+sns.heatmap(df.corr(), annot=True, cmap='YlGn', fmt='.2f')
+```
+
+
+# Results
+The code outputs the accuracy and recall scores for each model, the ROC AUC score for the Random Forest model, and visualizations for feature importance and correlation heatmap. The best Random Forest model's score is also printed.
+
+
+# Usage
+
+To run the code, simply execute the script in a Python environment where the required packages are installed. Ensure that the heart.csv file is accessible.
+
+
+```bash
+python heart_disease_prediction.py
+```
