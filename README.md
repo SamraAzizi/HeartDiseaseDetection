@@ -77,5 +77,9 @@ To run the code, simply execute the script in a Python environment where the req
 
 
 ```bash
-python heart_disease_prediction.py
+python main.py
 ```
+
+# Conclusion
+
+This project demonstrates the application of various machine learning algorithms for predicting heart disease. The results can help in understanding the importance of different features and the effectiveness of different models in making predictions.
